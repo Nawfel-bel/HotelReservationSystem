@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Nawfel-bel/HotelReservationSystem/issues"
   },
-  "homepage": "https://github.com/Nawfel-bel/HotelReservationSystem#readme"
+  "homepage": "https://github.com/Nawfel-bel/HotelReservationSystem#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
 }
