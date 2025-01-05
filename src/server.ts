@@ -1,33 +1,14 @@
 import express from 'express';
 import { DbClient } from './db';
+import route from './routes'
 const app = express();
 const port = 3000;
 
-DbClient.connect()
-    .then(() => console.log('Connected to DB'))
-    .catch((err) => console.error('Connection error', err.stack));
+
 app.use(express.json())
-app.get('/', async (req, res) => {
-    try {
-        const data = await DbClient.query('SELECT * from guests')
-        res.status(200).send(data.rows)
-    } catch (err) {
-        console.log(err)
-        res.sendStatus(500)
-    }
-});
+app.use(route)
 
-app.post('/', async (req, res) => {
-    let { name, age } = req.body
-    try {
-        await DbClient.query(`INSERT INTO guests (name, age) VALUES ($1, $2)`, [name, age])
-        res.status(200).send({ message: 'added guest data' })
-    } catch (err) {
-        console.log(err)
-        res.sendStatus(500)
-    }
-})
-
+// temporary
 app.get('/setup', async (req, res) => {
     console.log('started setup')
     try {
@@ -39,8 +20,14 @@ app.get('/setup', async (req, res) => {
         console.log(err)
         res.sendStatus(500)
     }
-})
+});
 
+DbClient.connect()
+    .then(() => console.log('Connected to DB'))
+    .catch((err) => {
+        console.error('Connection error', err.stack);
+        process.exit(1)
+    });
 app.listen(port, () => {
     console.log(`Server is running on port:${port}`);
 });

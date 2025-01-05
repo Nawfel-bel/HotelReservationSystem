@@ -1,14 +1,18 @@
 ###
+GET http://localhost:1300/api/v1/guests
+
+###
 GET http://localhost:1300
+
 
 ###
 GET http://localhost:1300/setup
 
 ###
-POST http://localhost:1300 
+POST http://localhost:1300/api/v1/guests
 Content-Type: application/json
 
 {
-    "name" : "name2",
-    "age" : "12345"
+    "name" : "name3",
+    "age" : "1555"
 } 
