@@ -1,11 +1,14 @@
 ###
-GET http://localhost:3000
+GET http://localhost:1300
 
 ###
-POST http://localhost:3000 
+GET http://localhost:1300/setup
+
+###
+POST http://localhost:1300 
 Content-Type: application/json
 
 {
-    "name" : "<test name>",
-    "age" : "<test age>"
+    "name" : "name2",
+    "age" : "12345"
 } 

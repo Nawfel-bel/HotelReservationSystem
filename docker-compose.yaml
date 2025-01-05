@@ -1,0 +1,11 @@
+services:
+  postgres_db:
+    image: postgres
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: hardPassword
+  api:
+    image: node-api
+    ports:
+      - 1300:3000

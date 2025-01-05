@@ -3,9 +3,9 @@ import { DbClient } from './db';
 const app = express();
 const port = 3000;
 
-// client.connect()
-//     .then(() => console.log('Connected to DB'))
-//     .catch((err) => console.error('Connection error', err.stack));
+DbClient.connect()
+    .then(() => console.log('Connected to DB'))
+    .catch((err) => console.error('Connection error', err.stack));
 app.use(express.json())
 app.get('/', async (req, res) => {
     try {
@@ -29,8 +29,11 @@ app.post('/', async (req, res) => {
 })
 
 app.get('/setup', async (req, res) => {
+    console.log('started setup')
     try {
         await DbClient.query('CREATE TABLE guests( id SERIAL PRIMARY KEY, name VARCHAR(255), age SMALLINT CHECK (age >=0))')
+
+        console.log("completed setup")
         res.status(200).send({ message: 'setup complete' })
     } catch (err) {
         console.log(err)
