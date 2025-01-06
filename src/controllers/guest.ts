@@ -1,5 +1,6 @@
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import { DbClient } from "../db"
+import { getGuest } from "../services/guest"
 
 export const GetGuests = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -11,18 +12,13 @@ export const GetGuests = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-export const GetGuest = async (req: Request, res: Response): Promise<void> => {
+export const GetGuest = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    let guestId = req.params.id;
     try {
-        let guestId = req.params.id;
-        console.log("wassabi " + guestId)
-        const data = await DbClient.query(`SELECT * from guests WHERE id = $1`, [guestId])
-        if (data.rowCount == 0) {
-            throw new Error("Guest not found");
-        }
-        res.status(200).send(data.rows)
+        let guest = await getGuest(guestId)
+        res.status(200).json(guest)
     } catch (err) {
-        console.log(err)
-        res.sendStatus(500)
+        next(err)
     }
 }
 
