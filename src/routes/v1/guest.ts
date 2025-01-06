@@ -1,26 +1,10 @@
 import express from "express";
 import { DbClient } from "../../db";
+import * as GuestsController from '../../controllers/guest'
 const router = express.Router();
 
-router.get("/guests", async (req, res) => {
-    try {
-        const data = await DbClient.query('SELECT * from guests')
-        res.status(200).send(data.rows)
-    } catch (err) {
-        console.log(err)
-        res.sendStatus(500)
-    }
-});
-
-router.post('/guests', async (req, res) => {
-    let { name, age } = req.body
-    try {
-        await DbClient.query(`INSERT INTO guests (name, age) VALUES ($1, $2)`, [name, age])
-        res.status(200).send({ message: 'added guest data' })
-    } catch (err) {
-        console.log(err)
-        res.sendStatus(500)
-    }
-})
+router.get("/guests/:id", GuestsController.GetGuest);
+router.get("/guests", GuestsController.GetGuests);
+router.post('/guests', GuestsController.CreateGuest)
 
 export default router;
