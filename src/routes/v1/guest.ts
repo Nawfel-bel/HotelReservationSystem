@@ -1,5 +1,4 @@
 import express from "express";
-import { DbClient } from "../../db";
 import * as GuestsController from '../../controllers/guest'
 const router = express.Router();
 

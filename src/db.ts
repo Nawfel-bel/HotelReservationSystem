@@ -1,15 +1,7 @@
-import { Client } from 'pg';
+import knex from 'knex';
+const knexfile = require('./knexfile.js')
 
-
-
-const client = new Client({
-    user: 'usr',
-    host: 'postgres_db',
-    database: 'db',
-    password: 'hardPassword',
-    port: 5432,
-});
-
-export { client as DbClient };
+const knexInstance = knex(knexfile.development)
+export { knexInstance as dbKnexClient }
 
 

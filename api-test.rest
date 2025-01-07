@@ -16,6 +16,7 @@ POST http://localhost:1300/api/v1/guests
 Content-Type: application/json
 
 {
-    "name" : "name3",
-    "age" : "1555"
+    "first_name" : "fnamooo",
+    "last_name" : "lnamooo",
+    "email" : "foo3@bar.com"
 } 

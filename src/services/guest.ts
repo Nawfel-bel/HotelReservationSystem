@@ -1,25 +1,18 @@
-import { DbClient } from "../db"
-import { ErrorResponse } from "../Middleware/errorHandling"
+import { dbKnexClient } from "../db"
 
 export const getGuests = async () => {
-    try {
-        const data = await DbClient.query('SELECT * from guests')
-        return data.rows
-    } catch (err) {
-        // handle different types of errors neatly
-        console.log(err)
-        return []
-    }
+    return await dbKnexClient('guest')
 }
 
 export const getGuest = async (id: string) => {
-    try {
-        const data = await DbClient.query(`SELECT * from guests WHERE id = $1`, [id])
-        if (data.rowCount == 0) {
-            throw new Error("guest not found")
-        }
-        return data.rows[0]
-    } catch (err) {
-        throw new ErrorResponse(`error fethcing guest with id: ${id} err: ${err}`, 500);
-    }
+    return await dbKnexClient('guest').where('id', id);
+}
+
+export const createGuest = async (first_name: string, last_name: string, email: string): Promise<string> => {
+    const [id] = await dbKnexClient('guest').insert({
+        first_name,
+        last_name,
+        email,
+    }).returning('id')
+    return id;
 }

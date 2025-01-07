@@ -1,20 +1,18 @@
 import { NextFunction, Request, Response } from "express"
-import { DbClient } from "../db"
-import { getGuest } from "../services/guest"
+import { createGuest, getGuest, getGuests } from "../services/guest"
 
 export const GetGuests = async (req: Request, res: Response): Promise<void> => {
     try {
-        const data = await DbClient.query('SELECT * from guests')
-        res.status(200).send(data.rows)
+        const data = await getGuests()
+        res.status(201).json(data)
     } catch (err) {
         console.log(err)
-        res.sendStatus(500)
     }
 }
 
 export const GetGuest = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    let guestId = req.params.id;
     try {
+        let guestId = req.params.id;
         let guest = await getGuest(guestId)
         res.status(200).json(guest)
     } catch (err) {
@@ -22,13 +20,15 @@ export const GetGuest = async (req: Request, res: Response, next: NextFunction):
     }
 }
 
-export const CreateGuest = async (req: Request, res: Response): Promise<void> => {
-    let { name, age } = req.body
+export const CreateGuest = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        await DbClient.query(`INSERT INTO guests (name, age) VALUES ($1, $2)`, [name, age])
-        res.status(200).send({ message: 'added guest data' })
+        let { first_name, last_name, email } = req.body
+        const guestId = await createGuest(first_name, last_name, email)
+        res.status(201).json({
+            message: 'added guest data',
+            id: guestId
+        })
     } catch (err) {
-        console.log(err)
-        res.sendStatus(500)
+        next(err)
     }
 }
