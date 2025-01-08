@@ -16,10 +16,14 @@ const config = {
     migrations: {
         tableName: "knex_migrations",
         loadExtensions: ['.js'],
-        directory: './dist/db/migrations',
+        directory: './db/migrations',
+
+        // directory: './dist/db/migrations',
     },
     seeds: {
-        directory: './dist/db/seeds'
+        directory: './db/seeds'
+
+        // directory: './dist/db/seeds'
     }
 
 };

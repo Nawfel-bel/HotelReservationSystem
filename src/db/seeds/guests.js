@@ -5,7 +5,6 @@
 exports.seed = async function (knex) {
   // fix id autoincrement issue
   await knex('guests').del()
-  yield knex.raw('ALTER SEQUENCE guests_id_seq RESTART WITH 1');
 
   await knex('guests').insert([
     { id: 1, first_name: 'peach_F', last_name: 'peach_L', email: "peach@foobar.com" },
