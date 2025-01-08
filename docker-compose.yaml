@@ -13,12 +13,12 @@ services:
     image: node-api
     ports:
       - 1300:3000
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: admin@admin.com
-  #     PGADMIN_DEFAULT_PASSWORD: admin
-  #   ports:
-  #     - "5959:80" # Access pgAdmin in your browser via http://localhost:5959
-  #   depends_on:
-  #     - postgres_db # Ensures pgAdmin starts after postgres_db
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5959:80" # Access pgAdmin in your browser via http://localhost:5959
+    depends_on:
+      - postgres_db # Ensures pgAdmin starts after postgres_db

@@ -1,8 +1,7 @@
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.up = function (knex) {
+import type { Knex } from "knex";
+
+
+export async function up(knex: Knex): Promise<void> {
     return knex.schema.createTable('reservations', table => {
         table.increments('id');
         table.date('start_date').notNullable();
@@ -13,10 +12,10 @@ exports.up = function (knex) {
     })
 };
 
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.down = function (knex) {
+
+
+export async function down(knex: Knex): Promise<void> {
     return knex.schema.dropTable('reservations');
-};
+
+}
+

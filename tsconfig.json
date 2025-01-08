@@ -106,7 +106,6 @@
   "include": [
     "src/**/*.ts",
     "src/knexfile.js",
-    "src/db/**/*.js"
   ],
   "exclude": [
     "node_modules"
