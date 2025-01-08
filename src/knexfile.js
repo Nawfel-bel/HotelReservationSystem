@@ -1,7 +1,7 @@
 
 // change these to env variables
 const config = {
-    client: "postgresql",
+    client: "pg",
     connection: {
         host: 'postgres_db',
         user: 'usr',
@@ -16,7 +16,10 @@ const config = {
     migrations: {
         tableName: "knex_migrations",
         loadExtensions: ['.js'],
-        directory: './db/migrations',
+        directory: './dist/db/migrations',
+    },
+    seeds: {
+        directory: './dist/db/seeds'
     }
 
 };

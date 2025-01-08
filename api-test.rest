@@ -2,21 +2,32 @@
 GET http://localhost:1300/api/v1/guests
 
 ###
-GET http://localhost:1300/api/v1/guests/1
+GET http://localhost:1300/api/v1/guests/2
 
 ###
 GET http://localhost:1300
 
 
 ###
-GET http://localhost:1300/setup
-
-###
 POST http://localhost:1300/api/v1/guests
 Content-Type: application/json
 
 {
-    "first_name" : "fnamooo",
-    "last_name" : "lnamooo",
-    "email" : "foo3@bar.com"
+    "first_name" : "actual",
+    "last_name" : "second",
+    "email" : "aaaffff@bafr.com",
+    "phone_numbers" : ["1234","4567"]
 } 
+
+###
+PUT http://localhost:1300/api/v1/guests
+Content-Type: application/json
+
+{
+    "user_id" : 1,
+    "first_name" : "alo",
+    "last_name" : "marhaba",
+    "email" : "daaaddsf@bafr.com",
+    "phone_numbers" : ["1234","4567"]
+} 
+
