@@ -1,4 +1,3 @@
-import knex from "knex";
 import { dbKnexClient } from "../db"
 import { IGuest } from "../Interfaces/guest";
 
