@@ -7,28 +7,29 @@
             <button
                 iconStart="@tui.home"
                 tuiAsideItem
-                type="button">
+                type="button"
+                [routerLink]="routes.home">
                 <span tuiFade>Home</span>
             </button>
         </header>
-        <button
-            iconStart="@tui.search"
-            tuiAsideItem
-            type="button">
-            Search
-        </button>
         <a
-            iconStart="@tui.users"
+            iconStart="@tui.user"
             tuiAsideItem
-            [routerLink]="routes.Navigation">
-            Groups
+            [routerLink]="routes.guests">
+            Guests
         </a>
-        <button
-            iconStart="@tui.home"
+        <a
+            iconStart="@tui.bed"
             tuiAsideItem
-            type="button">
-            Search
-        </button>
+            [routerLink]="routes.rooms">
+            Rooms
+        </a>
+        <a
+            iconStart="@tui.bookmark"
+            tuiAsideItem
+            [routerLink]="routes.reservations">
+            Reservations
+        </a>
         <hr />
         <button
             iconStart="@tui.plus"

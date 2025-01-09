@@ -15,6 +15,11 @@ import {
 
 export class SideBarComponent {
   protected expanded = false;
-  protected readonly routes: any = {};
+  protected readonly routes: any = {
+    reservations: './reservations',
+    rooms: './rooms',
+    guests: './guests',
+    home: './'
+  };
 
 }

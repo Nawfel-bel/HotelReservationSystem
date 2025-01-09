@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GuestCellComponent } from '../components/guest-cell/guest-cell.component';
+import { GuestCellComponent } from '../../components/guest-cell/guest-cell.component';
 import { NgFor } from '@angular/common';
 
 @Component({
