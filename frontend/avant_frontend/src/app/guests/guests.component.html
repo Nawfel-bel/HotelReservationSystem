@@ -1,1 +1,6 @@
-<p>guests works!</p>
+<div class="guests-list-holder">
+    <div *ngFor="let guest of guests">
+
+        <app-guest-cell [guest]="guest"></app-guest-cell>
+    </div>
+</div>

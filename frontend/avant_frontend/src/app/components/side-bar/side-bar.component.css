@@ -1,8 +1,0 @@
-.side-bar-holder {
-    display: flex;
-    height: calc(100vh - 45px);
-}
-
-.side-nav {
-    height: 100%;
-}

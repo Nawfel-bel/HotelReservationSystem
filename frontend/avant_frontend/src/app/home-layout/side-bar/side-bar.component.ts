@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TuiNavigation } from '@taiga-ui/layout';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import {
   TuiDropdown,
   TuiDataList
@@ -8,7 +8,7 @@ import {
 
 @Component({
   selector: 'app-side-bar',
-  imports: [TuiNavigation, RouterLink, RouterLinkActive, TuiDropdown, TuiDataList],
+  imports: [TuiNavigation, RouterOutlet, RouterLink, RouterLinkActive, TuiDropdown, TuiDataList],
   templateUrl: './side-bar.component.html',
   styleUrl: './side-bar.component.css'
 })

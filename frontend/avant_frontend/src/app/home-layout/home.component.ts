@@ -14,7 +14,7 @@ import {
   TuiTabs,
 } from '@taiga-ui/kit';
 
-import { SideBarComponent } from '../components/side-bar/side-bar.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 import { TuiNavigation } from '@taiga-ui/layout';
 
 const ICON =

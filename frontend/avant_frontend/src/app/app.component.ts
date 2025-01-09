@@ -1,7 +1,7 @@
 import { TuiRoot } from "@taiga-ui/core";
 import { Component } from '@angular/core';
 
-import HomeComponent from "./home/home.component";
+import HomeComponent from "./home-layout/home.component";
 
 @Component({
   selector: 'app-root',

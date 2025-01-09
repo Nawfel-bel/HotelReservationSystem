@@ -1,0 +1,15 @@
+ <div tuiCell>
+    <tui-avatar
+        appearance="primary"
+        src="@tui.star" />
+    <div tuiTitle>
+        {{guest().first_name}}
+        <div tuiSubtitle>{{guest().email}}</div>
+    </div>
+    <button
+        tuiButton
+        type="button"
+        (click)="OnEditButtonClicked($event)">
+        Edit {{myCounter()}}
+    </button>
+</div>

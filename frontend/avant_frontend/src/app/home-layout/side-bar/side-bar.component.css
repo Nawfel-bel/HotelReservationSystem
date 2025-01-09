@@ -1,0 +1,13 @@
+.side-bar-holder {
+    display: flex;
+    height: calc(100vh - 48px);
+}
+
+.side-nav {
+    height: 100%;
+}
+
+.content-holder {
+    display: inline;
+    padding: 20px;
+}
