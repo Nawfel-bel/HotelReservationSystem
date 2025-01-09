@@ -1,0 +1,53 @@
+
+<div class="side-bar-holder">
+    <aside
+        class="side-nav"
+        [tuiNavigationAside]="expanded">
+        <header>
+            <button
+                iconStart="@tui.home"
+                tuiAsideItem
+                type="button">
+                <span tuiFade>Home</span>
+            </button>
+        </header>
+        <button
+            iconStart="@tui.search"
+            tuiAsideItem
+            type="button">
+            Search
+        </button>
+        <a
+            iconStart="@tui.users"
+            tuiAsideItem
+            [routerLink]="routes.Navigation">
+            Groups
+        </a>
+        <button
+            iconStart="@tui.home"
+            tuiAsideItem
+            type="button">
+            Search
+        </button>
+        <hr />
+        <button
+            iconStart="@tui.plus"
+            tuiAsideItem
+            type="button">
+            Add
+        </button>
+        <footer>
+            <button
+                tuiAsideItem
+                type="button"
+                [iconStart]="expanded ? '@tui.chevron-left' : '@tui.chevron-right'"
+                (click)="expanded = !expanded">
+                {{ expanded ? 'Collapse' : 'Expand' }}
+            </button>
+        </footer>
+    </aside>
+    <main tuiNavigationMain>
+        <p>hellosdfffffffffffffffffff</p>
+
+    </main>
+</div>
