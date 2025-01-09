@@ -1,6 +1,9 @@
 <div class="guests-list-holder">
-    <div *ngFor="let guest of guests">
+    @for (guest of guests(); track guest.id) {
+    <app-guest-cell [guest]="guest"></app-guest-cell>
 
+    }
+    <!-- <div *ngFor="let guest of guests()">
         <app-guest-cell [guest]="guest"></app-guest-cell>
-    </div>
+    </div> -->
 </div>

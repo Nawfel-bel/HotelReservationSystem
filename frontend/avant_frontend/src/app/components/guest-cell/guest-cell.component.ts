@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core
 import { TuiButton } from '@taiga-ui/core';
 import { TuiAvatar } from '@taiga-ui/kit';
 import { TuiCell } from '@taiga-ui/layout';
+import { IGuest } from '../../models/guest';
 
 
 @Component({
@@ -13,7 +14,13 @@ import { TuiCell } from '@taiga-ui/layout';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GuestCellComponent {
-  guest = input({ first_name: 'first name', email: 'email here' });
+  guest = input<IGuest>({
+    id: 'test',
+    firstName: 'test',
+    lastName: 'test',
+    email: 'test',
+    phone_numbers: ['test']
+  });
   myCounter = signal("ON")
 
   OnEditButtonClicked(event: MouseEvent) {
