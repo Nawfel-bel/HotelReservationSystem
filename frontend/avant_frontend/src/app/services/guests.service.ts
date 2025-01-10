@@ -9,7 +9,7 @@ import { map, Observable } from 'rxjs';
 })
 export class GuestsService {
   http = inject(HttpClient)
-  guestUrl = 'http://localhost:1300/api/v1/guests';
+  guestUrl = 'http://api:3000/api/v1/guests';
 
   constructor() { }
 

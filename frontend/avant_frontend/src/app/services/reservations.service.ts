@@ -11,7 +11,7 @@ export class ReservationsService {
   constructor() { }
 
   http = inject(HttpClient)
-  reservationsUrl = 'http://localhost:1300/api/v1/reservations';
+  reservationsUrl = 'http://api:3000/api/v1/reservations';
 
   $reservations = signal<IReservation[]>([]);
   getAllReservations(): Observable<IReservation[]> {

@@ -84,6 +84,10 @@ GET http://localhost:1300/api/v1/rooms/room_types
 
 GET http://localhost:1300/api/v1/reservations
 
+###
+
+DELETE  http://localhost:1300/api/v1/reservations/1
+
 ### 
 POST http://localhost:1300/api/v1/reservations
 Content-Type: application/json 
@@ -91,7 +95,7 @@ Content-Type: application/json
 {
    "room_ids" : [1],
    "guest_id" : 1,
-"start_date": "2025-01-20",
+    "start_date": "2025-01-20",
     "end_date": "2025-01-25"
 }
 

@@ -6,19 +6,27 @@ services:
       POSTGRES_USER: usr
       POSTGRES_PASSWORD: hardPassword
     ports:
-      #for knex migrations up
       - "5432:5432"
 
   api:
-    image: node-api
+    container_name: express-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 1300:3000
+  frontend:
+    container_name: angular-frontend
+    build:
+      context: ./frontend/avant_frontend
+    ports:
+      - 4200:80
   pgadmin:
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "5959:80" # Access pgAdmin in your browser via http://localhost:5959
+      - "5959:80"
     depends_on:
-      - postgres_db # Ensures pgAdmin starts after postgres_db
+      - postgres_db
