@@ -12,7 +12,7 @@ export class RoomsService {
 
 
   http = inject(HttpClient)
-  roomsUrl = 'http://api:3000/api/v1/rooms';
+  roomsUrl = 'http://localhost:1300/api/v1/rooms';
 
   $rooms = signal<IRoom[]>([]);
   getAllRooms(): Observable<IRoom[]> {
