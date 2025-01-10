@@ -19,7 +19,6 @@ Before you start, you need to have the following installed:
 2. **Docker Compose**: Follow the instructions on the [official Docker Compose website](https://docs.docker.com/compose/install/) to install Docker Compose.
 
 ## Project Structure
-|- 
 
 - **/**: Contains the Express backend application.
 - **frontend/avant_frontend**: Contains the Angular frontend application.
