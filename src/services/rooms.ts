@@ -13,11 +13,11 @@ export const getRooms = async (filterRequest: FilterRequest) => {
         .select('rooms.id',
             'rooms.room_number',
             'room_types.type',
-            // 'reserved_rooms.reservation_id',
+            'room_types.price',
             dbKnexClient.raw('COUNT(DISTINCT reserved_rooms.reservation_id) as reservation_count')  // Count distinct reservation_id
         )
         .leftJoin('reserved_rooms', 'rooms.id', 'reserved_rooms.room_id')
-        .groupBy('rooms.id', 'rooms.room_number', 'room_types.type')
+        .groupBy('rooms.id', 'rooms.room_number', 'room_types.type', 'room_types.price')
         .orderBy(orderBy)
         .offset(offset)
         .limit(limit)
