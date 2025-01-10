@@ -1,2 +1,3 @@
 frontend/
-prep
+prep/
+node_modules/
