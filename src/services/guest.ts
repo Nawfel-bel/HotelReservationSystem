@@ -67,4 +67,14 @@ export const updateGuest = async (id: string, first_name: string, last_name: str
     return id;
 }
 
+export const deleteGuest = async (id: string): Promise<void> => {
+    await dbKnexClient('phone_numbers').where('user_id', id).del();
+
+    const deletedCount = await dbKnexClient('guests').where('id', id).del();
+
+    if (deletedCount === 0) {
+        throw new Error(`Guest with id ${id} not found or already deleted`);
+    }
+};
+
 

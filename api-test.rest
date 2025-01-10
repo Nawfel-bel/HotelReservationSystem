@@ -4,6 +4,10 @@ GET http://localhost:1300/api/v1/guests
 ###
 GET http://localhost:1300/api/v1/guests/2
 
+
+###
+DELETE  http://localhost:1300/api/v1/guests/2
+
 ###
 GET http://localhost:1300
 

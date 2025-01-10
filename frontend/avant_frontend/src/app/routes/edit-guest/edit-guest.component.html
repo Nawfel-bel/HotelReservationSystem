@@ -1,0 +1,87 @@
+<form
+    tuiAppearance="floating"
+    tuiCardLarge
+    tuiForm="m"
+    [formGroup]="form"
+    [style.max-width.rem]="32">
+    <header tuiHeader>
+        <h2 tuiTitle>
+            {{isEditMode ? 'Edit User' : 'Create User'}}
+        </h2>
+    </header>
+    <tui-textfield>
+        <label tuiLabel>First Name:</label>
+        <input
+            formControlName="first_name"
+            placeholder="John"
+            tuiTextfield />
+    </tui-textfield>
+    <tui-error
+        formControlName="first_name"
+        [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield>
+        <label tuiLabel>Last Name:</label>
+        <input
+            formControlName="last_name"
+            placeholder="Wick"
+            tuiTextfield />
+    </tui-textfield>
+    <tui-error
+        formControlName="last_name"
+        [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield>
+        <label tuiLabel>Email:</label>
+        <input
+            formControlName="email"
+            placeholder="JohnWick@Hire2Finish.com"
+            tuiTextfield />
+    </tui-textfield>
+    <tui-error
+        formControlName="email"
+        [error]="[] | tuiFieldError | async" />
+
+    <div formArrayName="phone_numbers" class="phone-numbers-container">
+        <div *ngFor="let phone of phoneNumbers.controls; let i = index">
+            <tui-textfield class="phone-number-field">
+                <label tuiLabel>Phone Number {{ i + 1 }}:</label>
+                <input
+                    [formControlName]="i"
+                    placeholder="Phone Number"
+                    tuiTextfield />
+                <button
+                    tuiButton
+                    type="button"
+                    appearance="negative"
+                    (click)="removePhoneNumber(i)">
+                    Remove
+                </button>
+            </tui-textfield>
+            <tui-error
+                [formControlName]="i"
+                [error]="[] | tuiFieldError | async" />
+        </div>
+    </div>
+
+    <button
+        tuiButton
+        type="button"
+        (click)="addPhoneNumber()">
+        + Add Phone Number
+    </button>
+    <footer>
+        <button
+            appearance="secondary"
+            tuiButton
+            type="button">
+            Cancel
+        </button>
+        <button
+            tuiButton
+            type="button"
+            (click)="submitForm()">
+            Submit
+        </button>
+    </footer>
+</form>

@@ -1,40 +1,46 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Guest, IGuest } from '../models/guest';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuestsService {
   http = inject(HttpClient)
+  guestUrl = 'http://localhost:1300/api/v1/guests';
 
+  // $guests: Signal<IGuest[] | undefined> = toSignal(this.http.get<any[]>(this.guestUrl).pipe(map((guests) => {
+  //   let guestData = guests.map(guestData => new Guest(guestData));
+  //   console.log('wassabi ', guestData)
+  //   return guestData
+  // })))
+
+  $guests = signal<IGuest[]>([]);
   getAllGuests(): Observable<IGuest[]> {
-    const url = 'http://localhost:1300/api/v1/guests'
-    return this.http.get<any[]>(url).pipe(map((guests) => {
-      return guests.map(guestData => new Guest(guestData))
-    }
-    ));
+    return this.http.get<any[]>(this.guestUrl).pipe(map((guests) => {
+      let guestData = guests.map(guestData => new Guest(guestData))
+      this.$guests.set(guestData)
+      return guestData;
+    }));
 
   }
 
+  updateGuestWithId(id: string, guestData: FormData): Observable<IGuest> {
+    return this.http.put<IGuest>(`${this.guestUrl}`, { user_id: parseInt(id), ...guestData });
 
-  guests: IGuest[] = [
-    {
-      id: '1', firstName: 'peach_F', lastName: 'peach_L', email: "peach@foobar.com", phone_numbers: ['091233213']
-    },
-    {
-      id: '2', firstName: 'apple_F', lastName: 'apple_L', email: "apple@foobar.com", phone_numbers: ['091233214']
-    },
-    {
-      id: '3', firstName: 'mango_F', lastName: 'mango_L', email: "mango@foobar.com", phone_numbers: ['091233215']
-    },
-    {
-      id: '4', firstName: 'banana_F', lastName: 'banana_L', email: "banana@foobar.com", phone_numbers: ['091233216']
-    },
-    {
-      id: '5', firstName: 'cherry_F', lastName: 'cherry_L', email: "cherry@foobar.com", phone_numbers: ['091233217']
-    }
-  ]
+  }
+
+  createGuest(guestData: FormData): Observable<IGuest> {
+    return this.http.post<IGuest>(this.guestUrl, guestData);
+
+  }
+
+  deleteGuestWithId(id: string): Observable<any> {
+    return this.http.delete(this.guestUrl + '/' + id);
+  }
+
   constructor() { }
 }

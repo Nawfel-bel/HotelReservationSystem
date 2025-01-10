@@ -5,7 +5,7 @@ import HomeComponent from "./layouts/home-layout/home.component";
 
 @Component({
   selector: 'app-root',
-  imports: [TuiRoot, HomeComponent, TuiRoot],
+  imports: [TuiRoot, HomeComponent, TuiRoot, TuiRoot],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

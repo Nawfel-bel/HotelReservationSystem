@@ -7,5 +7,5 @@ router.get("/:id", GuestsController.GetGuestWithId); // get guest with ID
 router.get("/", GuestsController.GetAllGuests); // get all guests
 router.post('/', GuestsController.CreateGuest); // create guest
 router.put('/', GuestsController.UpdateGuest)
-
+router.delete('/:id', GuestsController.DeleteGuest)
 export default router;

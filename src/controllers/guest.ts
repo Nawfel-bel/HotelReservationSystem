@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express"
-import { createGuest, getGuest, getGuests, updateGuest } from "../services/guest"
+import { createGuest, deleteGuest, getGuest, getGuests, updateGuest } from "../services/guest"
 
 export const GetAllGuests = async (req: Request, res: Response): Promise<void> => {
     try {
         const data = await getGuests()
-        res.status(201).json(data)
+        res.status(200).json(data)
     } catch (err) {
         console.log(err)
     }
@@ -40,6 +40,18 @@ export const UpdateGuest = async (req: Request, res: Response, next: NextFunctio
         res.status(201).json({
             message: 'updated guest data',
             id: guestId
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
+export const DeleteGuest = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        let { id } = req.params
+        await deleteGuest(id)
+        res.status(200).json({
+            message: 'updated guest data',
         })
     } catch (err) {
         next(err)

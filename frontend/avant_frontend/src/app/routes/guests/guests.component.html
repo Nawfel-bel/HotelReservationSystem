@@ -1,9 +1,66 @@
 <div class="guests-list-holder">
-    @for (guest of guests(); track guest.id) {
-    <app-guest-cell [guest]="guest"></app-guest-cell>
-
-    }
-    <!-- <div *ngFor="let guest of guests()">
-        <app-guest-cell [guest]="guest"></app-guest-cell>
-    </div> -->
 </div>
+<button
+    tuiButton
+    type="button"
+    [routerLink]="['/guests/edit', {id: 0}]">
+    Create User +
+</button>
+<table
+    tuiTable
+    [size]="'l'"
+    [style.width.rem]="58">
+    <thead>
+        <tr>
+            @for (columnLabel of ['id', 'First Name', 'Last Name', 'Email',
+            'Phone numbers', 'Actions']; track $index) {
+            <th tuiTh>{{columnLabel}}</th>
+
+            }
+        </tr>
+    </thead>
+    <tbody tuiTbody>
+        <tr *ngFor="let guest of guests() ">
+            <td tuiTd>
+                <span>{{ guest.id
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ guest.firstName
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ guest.lastName
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ guest.email
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ guest.phone_numbers.join(',\n')
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span tuiStatus>
+                    <button
+                        tuiButton
+                        type="button"
+                        [routerLink]="['/guests/edit', {id: guest.id}]">
+                        Edit
+
+                    </button>
+                    <button
+                        tuiButton
+                        type="button"
+                        (click)="onDeleteGuestClicked(guest.id)"
+                        tuiAppearanceMode="invalid">
+
+                        Delete
+                    </button>
+
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>

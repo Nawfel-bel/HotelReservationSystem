@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GuestCellComponent } from './guest-cell.component';
+import { EditGuestComponent } from './edit-guest.component';
 
-describe('GuestCellComponent', () => {
-  let component: GuestCellComponent;
-  let fixture: ComponentFixture<GuestCellComponent>;
+describe('EditGuestComponent', () => {
+  let component: EditGuestComponent;
+  let fixture: ComponentFixture<EditGuestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GuestCellComponent]
+      imports: [EditGuestComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GuestCellComponent);
+    fixture = TestBed.createComponent(EditGuestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
