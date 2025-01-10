@@ -14,21 +14,14 @@ import { TuiInputDateRangeModule, TuiUnfinishedValidator } from '@taiga-ui/legac
 @Component({
   selector: 'app-edit-reservation',
   imports: [
-    TuiAppearance,
-    TuiButton,
-    TuiCardLarge,
-    TuiForm,
-    TuiHeader,
     TuiTextfield,
-    TuiTitle,
     ReactiveFormsModule,
     ReactiveFormsModule,
     TuiInputDateRangeModule,
-    TuiUnfinishedValidator,
     TuiDataList,
     TuiDataListWrapper,
     TuiSelectModule,
-    TuiTextfieldControllerModule,
+    TuiTextfieldControllerModule
   ],
   templateUrl: './edit-reservation.component.html',
   styleUrl: './edit-reservation.component.css'
