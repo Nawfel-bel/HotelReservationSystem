@@ -11,7 +11,8 @@ import { TuiItemsWithMore, TuiStatus } from '@taiga-ui/kit';
 
 @Component({
   selector: 'app-rooms',
-  imports: [NgFor,
+  imports: [
+    NgFor,
     FormsModule,
     NgForOf,
     TuiButton,
@@ -19,7 +20,8 @@ import { TuiItemsWithMore, TuiStatus } from '@taiga-ui/kit';
     TuiItemsWithMore,
     RouterLink,
     TuiStatus,
-    TuiTable],
+    TuiTable
+  ],
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.css'
 })
@@ -49,8 +51,8 @@ export class RoomsComponent implements OnInit {
       catchError((err) => {
         console.log('Something went wrong fetching rooms err:', err);
         throw err;
-      })).subscribe((resGuests) => {
-        this.rooms.set(resGuests)
+      })).subscribe((resRooms) => {
+        this.rooms.set(resRooms)
       });
 
   }

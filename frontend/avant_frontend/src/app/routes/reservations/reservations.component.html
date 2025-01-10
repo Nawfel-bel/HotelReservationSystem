@@ -1,1 +1,65 @@
-<p>reservations works!</p>
+
+<button
+    tuiButton
+    type="button"
+    [routerLink]="['/reservations/edit', {id: 0}]">
+    Create Reservation +
+</button>
+<table
+    tuiTable
+    [size]="'l'"
+    [style.width.rem]="58">
+    <thead>
+        <tr>
+            @for (columnLabel of ['id', 'Start Date', 'End Date', 'Guest ID',
+            'Room IDs', 'Actions']; track $index) {
+            <th tuiTh>{{columnLabel}}</th>
+
+            }
+        </tr>
+    </thead>
+    <tbody tuiTbody>
+        <tr *ngFor="let reservation of reservations() ">
+            <td tuiTd>
+                <span>{{ reservation.id
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ reservation.startDate
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ reservation.endDate
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ reservation.guestId
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ reservation.roomIds.join(',\n')
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span tuiStatus>
+                    <!-- <button
+                        tuiButton
+                        type="button"
+                        [routerLink]="['/reservations/edit', {id: reservation.id}]">
+                        Edit
+
+                    </button> -->
+                    <button
+                        tuiButton
+                        type="button"
+                        (click)="onDeleteReservationClicked(reservation.id)"
+                        tuiAppearanceMode="invalid">
+
+                        Delete
+                    </button>
+
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>

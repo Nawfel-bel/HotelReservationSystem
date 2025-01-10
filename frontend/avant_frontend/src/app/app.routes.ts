@@ -5,6 +5,7 @@ import { ReservationsComponent } from './routes/reservations/reservations.compon
 import { HomeComponent } from './routes/home/home.component';
 import { EditGuestComponent } from './routes/edit-guest/edit-guest.component';
 import { EditRoomComponent } from './routes/edit-room/edit-room.component';
+import { EditReservationComponent } from './routes/edit-reservation/edit-reservation.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -15,5 +16,7 @@ export const routes: Routes = [
     { path: 'rooms', component: RoomsComponent },
     { path: 'rooms/:id', component: EditRoomComponent },
 
-    { path: 'reservations', component: ReservationsComponent }
+    { path: 'reservations', component: ReservationsComponent },
+    { path: 'reservations/:id', component: EditReservationComponent },
+
 ];

@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get("/", ReservationsController.GetAllReservations);
 router.post('/', ReservationsController.CreateReservation);
-// router.put('/', GuestsController.UpdateGuest)
+router.delete('/:id', ReservationsController.DeleteReservation)
 
 export default router;
