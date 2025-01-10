@@ -1,8 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Guest, IGuest } from '../models/guest';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 
 @Injectable({
@@ -11,6 +10,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class GuestsService {
   http = inject(HttpClient)
   guestUrl = 'http://localhost:1300/api/v1/guests';
+
+  constructor() { }
 
   // $guests: Signal<IGuest[] | undefined> = toSignal(this.http.get<any[]>(this.guestUrl).pipe(map((guests) => {
   //   let guestData = guests.map(guestData => new Guest(guestData));
@@ -42,5 +43,4 @@ export class GuestsService {
     return this.http.delete(this.guestUrl + '/' + id);
   }
 
-  constructor() { }
 }

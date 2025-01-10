@@ -1,1 +1,65 @@
-<p>rooms works!</p>
+
+<button
+    tuiButton
+    type="button"
+    [routerLink]="['/rooms/edit', {id: 0}]">
+    Create Room +
+</button>
+<table
+    tuiTable
+    [size]="'l'"
+    [style.width.rem]="58">
+    <thead>
+        <tr>
+            @for (columnLabel of ['id', 'Room number', 'Room Type', 'Price',
+            '#of Reservations', 'Actions']; track $index) {
+            <th tuiTh>{{columnLabel}}</th>
+
+            }
+        </tr>
+    </thead>
+    <tbody tuiTbody>
+        <tr *ngFor="let room of rooms() ">
+            <td tuiTd>
+                <span>{{ room.id
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ room.roomNumber
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ room.roomType
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ room.price
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span>{{ room.reservationCount
+                    }}</span>
+            </td>
+            <td tuiTd>
+                <span tuiStatus>
+                    <button
+                        tuiButton
+                        type="button"
+                        [routerLink]="['/rooms/edit', {id: room.id}]">
+                        Edit
+
+                    </button>
+                    <button
+                        tuiButton
+                        type="button"
+                        (click)="onDeleteRoomClicked(room.id)"
+                        tuiAppearanceMode="invalid">
+
+                        Delete
+                    </button>
+
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -11,6 +11,25 @@ export const getReservationsForRoomWithId = async (id: string) => {
 
 export const getAllReservations = async () => {
     return await dbKnexClient('reservations')
+        .leftJoin('reserved_rooms', 'reservations.id', 'reserved_rooms.reservation_id')
+        .select('reservations.*', 'reserved_rooms.room_id')
+        .then(reservations => {
+            const groupedReservations = reservations.reduce((acc, reservation) => {
+                const { id, room_id, created_at, updated_at, ...reservationData } = reservation;
+
+                if (!acc[id]) {
+                    acc[id] = { reservation_id: id, ...reservationData, room_ids: [] };
+                }
+
+                if (room_id) {
+                    acc[id].room_ids.push(room_id);
+                }
+
+                return acc;
+            }, {});
+
+            return Object.values(groupedReservations);
+        });
 }
 
 export const createReservation = async ({
@@ -19,8 +38,6 @@ export const createReservation = async ({
     start_date: start,
     end_date: end,
 }: CreateReservationParams): Promise<number> => {
-    console.log("\n\n\n  wassbai ", room_ids, guest_id, start, end, " wassbai \n\n\n")
-
     const { start: start_date, end: end_date } = validateDateRange(start, end);
 
     const isAvailable = (await checkRoomAvailability(room_ids, start_date, end_date)).length <= 0;

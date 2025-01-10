@@ -1,9 +1,10 @@
 export interface IRoom {
-    id: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    phone_numbers: string[];
+    id: string;
+    roomNumber: string;
+    roomType: string;
+    price: string;
+    reservationCount: number
+
 }
 
 export class Room implements IRoom {
@@ -11,11 +12,13 @@ export class Room implements IRoom {
     roomNumber: string;
     roomType: string;
     price: string;
+    reservationCount: number
 
     constructor(roomData: any) {
         this.id = roomData.id.toString();
-        this.roomNumber =roomData.roomNumber;
-        this.roomType = roomData.roomType;
-        this.price = roomData.price
+        this.roomNumber = roomData.room_number;
+        this.roomType = roomData.type;
+        this.price = roomData.price.toString();
+        this.reservationCount = roomData.reservation_count;
     }
 }

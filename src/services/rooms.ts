@@ -47,6 +47,13 @@ export const updateRoom = async (id: string, room_number: string, room_type_id: 
     })
     return id;
 }
+export const deleteRoom = async (id: string): Promise<void> => {
+    const deletedCount = await dbKnexClient('rooms').where('id', id).del();
+
+    if (deletedCount === 0) {
+        throw new Error(`Room with id ${id} not found or already deleted`);
+    }
+};
 
 export const createRoomType = async (type: string, price: number) => {
     await dbKnexClient('room_types').insert([{

@@ -1,0 +1,47 @@
+<form
+    tuiAppearance="floating"
+    tuiCardLarge
+    tuiForm="m"
+    [formGroup]="form"
+    [style.max-width.rem]="32">
+    <header tuiHeader>
+        <h2 tuiTitle>
+            {{isEditMode ? 'Edit Room' : 'Create Room'}}
+        </h2>
+    </header>
+    <tui-textfield>
+        <label tuiLabel>Room Number:</label>
+        <input
+            formControlName="room_number"
+            placeholder="000"
+            tuiTextfield />
+    </tui-textfield>
+    <!-- <td tuiTd>
+        <tui-select
+            class="select-component"
+            tuiTextfieldSize="s"
+            formControlName="type">
+            Room Type
+            <input
+                placeholder="Choose your hero"
+                tuiTextfieldLegacy />
+            <tui-data-list-wrapper
+                *tuiDataList
+                [items]="roomTypes" />
+        </tui-select>
+    </td> -->
+    <footer>
+        <button
+            appearance="secondary"
+            tuiButton
+            type="button">
+            Cancel
+        </button>
+        <button
+            tuiButton
+            type="button"
+            (click)="submitForm()">
+            Submit
+        </button>
+    </footer>
+</form>

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express"
-import { createRoom, createRoomType, getRooms, getRoomsUpcomingReservations, getRoomTypes, updateRoom, updateRoomType } from "../services/rooms";
+import { createRoom, createRoomType, deleteRoom, getRooms, getRoomsUpcomingReservations, getRoomTypes, updateRoom, updateRoomType } from "../services/rooms";
 
 export const GetAllRooms = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -42,6 +42,20 @@ export const UpdateRoom = async (req: Request, res: Response): Promise<void> => 
         res.status(201).json(data)
     } catch (err) {
         console.log(err)
+    }
+}
+
+export const DeleteRoom = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    // if there is a reservation made under this room throw an error until the reservation is deleted first
+    try {
+        let { id } = req.params;
+
+        await deleteRoom(id)
+        res.status(200).json({
+            message: 'deleted room data',
+        })
+    } catch (err) {
+        next(err)
     }
 }
 

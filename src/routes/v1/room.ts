@@ -4,7 +4,9 @@ const router = express.Router();
 
 router.get("/", RoomsController.GetAllRooms);
 router.post('/', RoomsController.CreateRoom);
-router.put('/', RoomsController.UpdateRoom);
+router.put('/:id', RoomsController.UpdateRoom);
+router.delete('/:id', RoomsController.DeleteRoom);
+
 
 // reservations
 router.get("/reservations/:id", RoomsController.GetReservationsForRoomWithId);

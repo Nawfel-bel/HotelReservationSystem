@@ -40,6 +40,27 @@ Content-Type: application/json
 ### get rooms
 GET http://localhost:1300/api/v1/rooms
 
+### create room
+POST http://localhost:1300/api/v1/rooms
+Content-Type: application/json 
+
+{
+    "room_number": "222",
+    "room_type_id" : "2"
+}
+
+### update room
+PUT  http://localhost:1300/api/v1/rooms/1
+Content-Type: application/json 
+
+{
+    "room_number": "111111",
+    "room_type_id" : "2"
+}
+
+### delete room
+DELETE http://localhost:1300/api/v1/rooms/1
+
 ### get rooms with filters
 GET http://localhost:1300/api/v1/rooms?offset=10&limit=20
 
