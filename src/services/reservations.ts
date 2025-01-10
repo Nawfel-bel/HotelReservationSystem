@@ -63,11 +63,12 @@ export const createReservation = async ({
     return reservationId;
 };
 
-export const deleteReservation = async () => {
-
+export const deleteReservation = async (id: string) => {
+    const deletedReservations = await dbKnexClient('reservations').where('id', id).del();
+    if (deletedReservations === 0) {
+        throw new Error(`Reservation with id ${id} not found or already deleted`);
+    }
 }
-
-
 
 const validateDateRange = (startDate: string, endDate: string): { start: Date; end: Date } => {
     const now = new Date();
