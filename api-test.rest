@@ -1,6 +1,9 @@
 ###
 GET http://localhost:1300/api/v1/guests
 
+### testing pagination middleware
+GET http://localhost:1300/api/v1/guests?page=1&limit=5
+
 ###
 GET http://localhost:1300/api/v1/guests/2
 
