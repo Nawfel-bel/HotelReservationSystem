@@ -10,18 +10,19 @@ class ErrorResponse extends Error {
     }
 }
 
-const errorHandler = (
-    err: ErrorResponse,
+const errorHandler = async (
     req: Request,
     res: Response,
     next: NextFunction
-) => {
-    console.log("[Middlware: Error Handler]: ", err);
-    res.status(err.statusCode || 500).json({
-        success: false,
-        message: err.message || "Server Error",
-        data: null,
-    });
+): Promise<void> => {
+    console.log("[Middlware: Error Handler]: error: ");
+    res.status(200).json({ data: res.locals.data, paginatedData: res.locals.paginatedResult })
+    // if
+    // res.status(err.statusCode || 500).json({
+    //     success: false,
+    //     message: err.message || "Server Error",
+    //     data: null,
+    // });
 };
 
 export { ErrorResponse, errorHandler };

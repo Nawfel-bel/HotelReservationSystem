@@ -1,10 +1,11 @@
 import { NextFunction, Request, Response } from "express"
 import { createGuest, deleteGuest, getGuest, getGuests, updateGuest } from "../services/guest"
 
-export const GetAllGuests = async (req: Request, res: Response): Promise<void> => {
+export const GetAllGuests = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const data = await getGuests()
-        res.status(200).json(data)
+        res.locals.data = data;
+        next();
     } catch (err) {
         console.log(err)
     }

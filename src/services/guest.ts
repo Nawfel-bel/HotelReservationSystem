@@ -7,23 +7,9 @@ export const getGuests = async () => {
     const result = await dbKnexClient('guests')
         .leftJoin('phone_numbers', 'guests.id', 'phone_numbers.user_id')
         .select('guests.*', 'phone_numbers.phone_number')
-        .groupBy('guests.id', 'phone_numbers.phone_number');
+        .groupBy('guests.id', 'phone_numbers.phone_number')
 
-    const guests: IGuest[] = result.reduce((acc: IGuest[], row: any) => {
-        const existingGuest = acc.find(g => g.id === row.id);
-        if (existingGuest) {
-            existingGuest.phone_numbers.push(row.phone_number);
-        } else {
-            const { phone_number, created_at, updated_at, ...rest } = row;
-            acc.push({
-                ...rest,
-                phone_numbers: row.phone_number ? [row.phone_number] : [],
-            });
-        }
-        return acc;
-    }, []);
-
-    return guests;
+    return result;
 };
 
 export const getGuest = async (id: string) => {
@@ -31,13 +17,21 @@ export const getGuest = async (id: string) => {
         .where('id', id)
         .first();
 
-    // TODO: handle guest not found
+
+    const guestsVar = await dbKnexClient('guests')
+        .leftJoin('phone_numbers', 'guests.id', 'phone_numbers.user_id')
+        .select('guests.*', 'phone_numbers.phone_number')
+        .where('guests.id', id)
+        .first();
     const phoneNumbers = await dbKnexClient('phone_numbers').where('user_id', id);
     const { created_at, updated_at, ...rest } = guest;
 
     return {
-        ...rest,
-        phone_numbers: phoneNumbers.map(x => x.phone_number),
+        original: {
+            ...rest,
+            phone_numbers: phoneNumbers.map(x => x.phone_number),
+        },
+        new: { guestsVar }
     };
 }
 
